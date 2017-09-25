@@ -1,0 +1,37 @@
+package assignment;
+
+ 
+
+public class IsBinarySearchTreeOrNot {
+	static Node n;
+
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		n=new Node(5);
+		n.left=new Node(2);
+		n.left.left=new Node(1);
+		n.left.right=new Node(3);
+		n.right=new Node(7);
+		n.right.left=new Node(6);
+		n.right.right=new Node(8);
+		//n.right.right.left=new Node(9);
+		//n.right.right.right=new Node(4);
+		
+		System.out.println(isBst(n));
+
+	}
+	public static boolean isBst(Node n) {
+		return isBst(n,Integer.MIN_VALUE,Integer.MAX_VALUE);
+		
+	}
+	public static boolean isBst(Node n,int n1,int n2) {
+		if(n==null)
+			return true;
+		if(n.data<n1 ||  n.data>n2)
+			return false;
+	return isBst(n.left,n1,n.data) && isBst(n.right,n.data+1,n2);
+	}
+
+}
