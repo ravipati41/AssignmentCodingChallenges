@@ -1,0 +1,74 @@
+package assignment;
+
+public class FindNumsEqualToSum {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int[] arr= {1,2,3,2,4};
+		int n=arr.length;
+		int sum=8;
+		findElements(arr,sum);
+		int total=0;
+		for(int i=0;i<arr.length;i++) {
+			total=total+arr[i];
+			
+		}
+		System.out.println(total);
+		subArraySum(arr,n,sum);
+		
+
+	}
+	public static int findElements(int[] arr,int sum) {
+		int count=0;
+		for(int i=0;i<arr.length;i++) {
+			for(int j=i+1;j<arr.length;j++) {
+				if(arr[i]+arr[j]==sum) {
+					System.out.println(arr[i]+"  "+arr[j]+"\n");
+					count++;
+				}
+				
+			}
+			
+		}
+		if(count==0) {
+			System.out.println("there is no two elements of sum equal to given sum");
+		}
+		
+		return 0;
+		
+	}
+	 public static int subArraySum(int arr[], int n, int sum) 
+	    {
+	        int curr_sum, i, j;
+	 
+	        // Pick a starting point
+	        for (i = 0; i < n; i++) 
+	        {
+	            curr_sum = arr[i];
+	 
+	            // try all sub arrays starting with 'i'
+	            for (j = i + 1; j <= n; j++) 
+	            {
+	                if (curr_sum == sum) 
+	                {
+	                    int p = j - 1;
+	                    for(int k=i;k<=p;k++) {
+	                    	System.out.println(arr[k]+" ");
+	                    }
+	                    System.out.println("Sum found between indexes " + i
+	                            + " and " + p);
+	                    return 1;
+	                }
+	                if (curr_sum > sum || j == n)
+	                    break;
+	                curr_sum = curr_sum + arr[j];
+	            }
+	        }
+	 
+	        System.out.println("No subarray found");
+	        return 0;
+	    }
+	
+
+}
