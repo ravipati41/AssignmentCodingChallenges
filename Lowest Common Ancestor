@@ -1,0 +1,79 @@
+package assignment;
+
+ class Node{
+	int data;
+	Node left,right;
+	Node(int value){
+		data=value;
+		left=right=null;
+	}
+}
+
+public class LowestCommonAncestor {
+	 static Node root;
+	 
+
+	public static void main(String[] args) {
+	
+		// TODO Auto-generated method stub
+	//LowestCommonAncestor tree=new LowestCommonAncestor();
+		root= new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.left = new Node(6);
+        root.right.right = new Node(7);
+       
+ 
+        System.out.println();
+	
+	System.out.println(lca(4,6).data );
+	
+
+	}
+	public static Node lca(int p,int q) {
+		return lca(root,p,q);
+		
+		
+	}
+	public  static Node lca(Node root,int  p,int q) {
+		
+		if(root==null) {
+			return null;
+		}
+		if(root.data==p || root.data==q) {
+			return root;
+		}
+	Node left=lca(root.left,p,q);
+    Node right=lca(root.right,p,q);
+		if(left!=null && right!=null) {
+			return root;
+		}
+		if(left==null && right==null) {
+			return null;
+		}
+		
+		return left!=null? left : right;
+	
+	}
+	 public static int height(Node root) {
+		
+		 if(root==null) {
+			 return 0;
+		 }
+		 else {
+			 int lh=height(root.left);
+		int rh=height(root.right);
+		
+		if(lh>rh) {
+			return lh+1;
+		}else 
+			return rh+1;
+		
+		 }
+		
+			 
+		 }
+
+}
